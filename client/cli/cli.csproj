@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>$(BaseNamespace).Clients.Cli</RootNamespace>
+        <AssemblyName>just-compose</AssemblyName>
+        <DocumentationFile>Properties\$(RootNamespace).xml</DocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ConsoleFx.CmdLine.Program" Version="2.0.0-build.283" />
+        <PackageReference Include="ConsoleFx.ConsoleExtensions" Version="2.0.0-build.283" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\composer\Script\Script.csproj" />
+      <ProjectReference Include="..\..\src\Config.Yaml\Config.Yaml.csproj" />
+      <ProjectReference Include="..\..\src\Core\Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="just-compose.yml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

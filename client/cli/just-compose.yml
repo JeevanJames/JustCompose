@@ -1,0 +1,22 @@
+﻿composers:
+  script: JustCompose.Composers.Script.ScriptComposer, JustCompose.Composers.Script
+
+compositions:
+  ci:
+    description: Run tests during CI
+    steps:
+      - composer: script
+        properties:
+          inline_script: |
+            @echo off
+            d:
+            cd \Code\GitHub\IniFile
+            dotnet build -c Release
+      - composer: script
+        properties:
+          script_type: Powershell
+          inline_script: |
+            Write-Host 'Hello World!'
+            Write-Host 'Second line'
+  local:
+    description: Run tests locally

@@ -12,6 +12,6 @@ namespace JustCompose.Config.Yaml.Config
         public string Description { get; set; }
 
         [YamlMember(Alias = "steps")]
-        public IList<StepConfig> Steps { get; set; }
+        public IDictionary<string, StepConfig> Steps { get; set; }
     }
 }

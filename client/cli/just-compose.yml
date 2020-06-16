@@ -5,14 +5,17 @@ compositions:
   ci:
     description: Run tests during CI
     steps:
-      - composer: script
+      first_script:
+        composer: script
         properties:
           inline_script: |
             @echo off
             d:
             cd \Code\GitHub\IniFile
             dotnet build -c Release
-      - composer: script
+          async: true
+      second_script:
+        composer: script
         properties:
           script_type: Powershell
           inline_script: |
@@ -20,3 +23,9 @@ compositions:
             Write-Host 'Second line'
   local:
     description: Run tests locally
+    steps:
+      first_script:
+        composer: script
+        properties:
+          script_type: Powershell
+          inline_script: Write-Host 'Local script'

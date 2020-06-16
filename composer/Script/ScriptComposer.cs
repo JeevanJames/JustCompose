@@ -64,6 +64,9 @@ namespace JustCompose.Composers.Script
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
 
+            if (!Async)
+                process.WaitForExit();
+
             return new ScriptContext(process);
         }
 
@@ -73,6 +76,9 @@ namespace JustCompose.Composers.Script
                 throw new ArgumentNullException(nameof(context));
 
             var scriptContext = (ScriptContext)context;
+
+            if (!Async)
+                return;
 
             if (scriptContext.Process.HasExited)
                 return;
@@ -90,6 +96,8 @@ namespace JustCompose.Composers.Script
         public string ScriptFilePath => Properties.Get<string>(ScriptComposerKeys.ScriptFilePath);
 
         public string Arguments => Properties.Get<string>(ScriptComposerKeys.Arguments);
+
+        public bool Async => Properties.Get(ScriptComposerKeys.Async, false);
 
         public override IEnumerable<PropertyDescriptor> GetPropertyDescriptors()
         {
@@ -129,6 +137,17 @@ namespace JustCompose.Composers.Script
             {
                 Description = "Arguments to the script",
             };
+
+            yield return new PropertyDescriptor(ScriptComposerKeys.Async)
+            {
+                Description = "Run the script asynchrously.",
+                DefaultValue = "false",
+                ValidValues =
+                {
+                    ["false"] = "Script will run synchronously.",
+                    ["true"] = "Script will run asynchronously.",
+                },
+            };
         }
     }
 
@@ -139,5 +158,6 @@ namespace JustCompose.Composers.Script
         public const string InlineScript = nameof(InlineScript);
         public const string ScriptFilePath = nameof(ScriptFilePath);
         public const string Arguments = nameof(Arguments);
+        public const string Async = nameof(Async);
     }
 }

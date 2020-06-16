@@ -13,6 +13,10 @@ namespace JustCompose.Clients.Cli
     [Help("Runs the scripts from the just-compose.yml in the current file.")]
     public sealed class UpCommand : Command
     {
+        [Argument(Order = 0, Optional = true)]
+        [Help("composition name", "Name of the composition to execute.")]
+        public string CompositionName { get; set; }
+
         protected override async Task<int> HandleCommandAsync()
         {
             var executor = new CompositionExecutor();
@@ -21,7 +25,10 @@ namespace JustCompose.Clients.Cli
             var file = new FileInfo(configFilePath);
             executor.LoadFromYaml(file);
 
-            await executor.ExecuteAsync().ConfigureAwait(false);
+            if (string.IsNullOrWhiteSpace(CompositionName))
+                await executor.ExecuteAsync().ConfigureAwait(false);
+            else
+                await executor.ExecuteAsync(CompositionName).ConfigureAwait(false);
 
             return 0;
         }

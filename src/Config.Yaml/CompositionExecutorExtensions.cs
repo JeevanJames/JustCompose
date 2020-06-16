@@ -30,12 +30,12 @@ namespace JustCompose.Config.Yaml
 
                 var composition = new Composition(name, compositionCfg.Description);
 
-                foreach (StepConfig stepCfg in compositionCfg.Steps)
+                foreach ((string stepName, StepConfig stepCfg) in compositionCfg.Steps)
                 {
                     if (!config.Composers.TryGetValue(stepCfg.Composer, out string composerTypeName))
                         throw new InvalidOperationException($"Cannot find composer named '{stepCfg.Composer}.");
                     Type composerType = Type.GetType(composerTypeName);
-                    var step = new Step(composerType);
+                    var step = new Step(stepName, composerType);
                     foreach (var (key, value) in stepCfg.Properties)
                         step.Add(key.Pascalize(), value);
                     composition.Add(step);

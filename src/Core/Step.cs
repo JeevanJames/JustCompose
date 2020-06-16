@@ -9,8 +9,9 @@ namespace JustCompose.Core
     public sealed class Step : Dictionary<string, string>
 #pragma warning restore CA1716 // Identifiers should not match keywords
     {
-        public Step(Type composerType)
+        public Step(string name, Type composerType)
         {
+            Name = name;
             ComposerType = composerType;
         }
 
@@ -18,6 +19,8 @@ namespace JustCompose.Core
             : base(info, context)
         {
         }
+
+        public string Name { get; }
 
         public Type ComposerType { get; }
     }

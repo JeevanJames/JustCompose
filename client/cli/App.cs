@@ -1,11 +1,7 @@
-﻿using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 using ConsoleFx.CmdLine.Program;
 using ConsoleFx.CmdLine.Program.HelpBuilders;
-
-using JustCompose.Config.Yaml;
-using JustCompose.Core;
 
 namespace JustCompose.Clients.Cli
 {
@@ -26,39 +22,5 @@ namespace JustCompose.Clients.Cli
             return await program.RunWithCommandLineArgsAsync().ConfigureAwait(false);
 #endif
         }
-
-        protected override async Task<int> HandleCommandAsync()
-        {
-            //var executor = new CompositionExecutor
-            //{
-            //    new Composition("ci", "CI composition")
-            //    {
-            //        new Step(typeof(ScriptComposer))
-            //        {
-            //            [ScriptComposerKeys.ScriptType] = ScriptType.Powershell.ToString(),
-            //            [ScriptComposerKeys.Source] = ScriptSource.Inline.ToString(),
-            //            [ScriptComposerKeys.InlineScript] = PowershellScript,
-            //        },
-            //    },
-            //};
-            //await executor.ExecuteAsync().ConfigureAwait(false);
-
-            var executor = new CompositionExecutor();
-            var file = new FileInfo("just-compose.yml");
-            executor.LoadFromYaml(file);
-            await executor.ExecuteAsync().ConfigureAwait(false);
-
-            return 0;
-        }
-
-//        private const string NativeScript = @"@echo off
-//d:
-//cd \Code\GitHub\IniFile
-//dotnet build -c Release
-//tree";
-
-//        private const string PowershellScript = @"Write-Host 'Hello World'
-//cd D:\Code\GitHub\ConsoleFx
-//dotnet build -c Release";
     }
 }

@@ -4,7 +4,7 @@ namespace JustCompose.Core
 {
     public sealed class PropertyDescriptor
     {
-        public PropertyDescriptor(string name, string description = null, bool required = false)
+        public PropertyDescriptor(string name, string? description = null, bool required = false)
         {
             Name = name;
             Description = description;
@@ -13,11 +13,11 @@ namespace JustCompose.Core
 
         public string Name { get; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public bool Required { get; set; }
 
-        public string DefaultValue { get; set; }
+        public string? DefaultValue { get; set; }
 
         public IDictionary<string, string> ValidValues { get; } = new Dictionary<string, string>();
     }

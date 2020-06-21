@@ -14,6 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\composer\GitClone\GitClone.csproj" />
       <ProjectReference Include="..\..\composer\Script\Script.csproj" />
       <ProjectReference Include="..\..\src\Config.Yaml\Config.Yaml.csproj" />
       <ProjectReference Include="..\..\src\Core\Core.csproj" />

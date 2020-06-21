@@ -8,6 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="LibGit2Sharp" Version="0.27.0-preview-0034" />
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\..\src\Core\Core.csproj" />
     </ItemGroup>
 

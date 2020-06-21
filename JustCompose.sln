@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cli", "client\cli\cli.cspro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Script", "composer\Script\Script.csproj", "{A0832EFB-7389-4BC4-8228-D2446FADA6D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Config.Yaml", "src\Config.Yaml\Config.Yaml.csproj", "{B83CC194-5F69-4298-A681-4A4381794E5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Config.Yaml", "src\Config.Yaml\Config.Yaml.csproj", "{B83CC194-5F69-4298-A681-4A4381794E5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

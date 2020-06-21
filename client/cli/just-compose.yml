@@ -1,19 +1,24 @@
 ﻿composers:
+  git_clone: JustCompose.Composers.GitClone.GitCloneComposer, JustCompose.Composers.GitClone
   script: JustCompose.Composers.Script.ScriptComposer, JustCompose.Composers.Script
 
 compositions:
   ci:
     description: Run tests during CI
     steps:
-      first_script:
+      clone:
+        composer: git_clone
+        properties:
+          clone_url: https://github.com/JeevanJames/Id3
+          clone_directory: D:\Temp\Id3
+      build:
         composer: script
         properties:
           inline_script: |
             @echo off
             d:
-            cd \Code\GitHub\IniFile
+            cd \Temp\Id3
             dotnet build -c Release
-          async: true
       second_script:
         composer: script
         properties:

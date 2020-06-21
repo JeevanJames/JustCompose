@@ -20,8 +20,8 @@ namespace JustCompose.Core
         {
         }
 
-        public string Name { get; }
+        public string Name { get; } = null!;
 
-        public Type ComposerType { get; }
+        public Type ComposerType { get; } = null!;
     }
 }

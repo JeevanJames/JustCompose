@@ -5,6 +5,7 @@
         <RootNamespace>$(BaseNamespace).Core</RootNamespace>
         <AssemblyName>$(RootNamespace)</AssemblyName>
         <DocumentationFile>Properties\$(RootNamespace).xml</DocumentationFile>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
 </Project>

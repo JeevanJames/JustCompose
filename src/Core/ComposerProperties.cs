@@ -33,7 +33,7 @@ namespace JustCompose.Core
         {
             if (!TryGetValue(key, out string stringValue))
             {
-                value = default;
+                value = default!;
                 return false;
             }
 
@@ -59,7 +59,7 @@ namespace JustCompose.Core
                 return true;
             }
 
-            value = default;
+            value = default!;
             return false;
         }
     }

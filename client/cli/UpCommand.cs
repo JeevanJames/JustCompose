@@ -7,6 +7,9 @@ using ConsoleFx.CmdLine.Program;
 using JustCompose.Config.Yaml;
 using JustCompose.Core;
 
+using static ConsoleFx.ConsoleExtensions.Clr;
+using static ConsoleFx.ConsoleExtensions.ConsoleEx;
+
 namespace JustCompose.Clients.Cli
 {
     [Command("up")]
@@ -24,6 +27,7 @@ namespace JustCompose.Clients.Cli
             string configFilePath = Path.Combine(Directory.GetCurrentDirectory(), "just-compose.yml");
             var file = new FileInfo(configFilePath);
             executor.LoadFromYaml(file);
+            executor.OnStatus += Executor_OnStatus;
 
             if (string.IsNullOrWhiteSpace(CompositionName))
                 await executor.ExecuteAsync().ConfigureAwait(false);
@@ -31,6 +35,20 @@ namespace JustCompose.Clients.Cli
                 await executor.ExecuteAsync(CompositionName).ConfigureAwait(false);
 
             return 0;
+        }
+
+        private void Executor_OnStatus(object sender, StatusEventArgs<StepStatus> e)
+        {
+            string message = e.StatusType switch
+            {
+                StepStatus.Up => $"{Cyan}{e.Message}",
+                StepStatus.Down => $"{Cyan}{e.Message}",
+                StepStatus.Error => $"{Red}{e.Message}",
+                StepStatus.Status => $"{Cyan}{e.Message}",
+                StepStatus.Progress => $"{Cyan}{e.Message}",
+                _ => string.Empty,
+            };
+            PrintLine(message);
         }
     }
 }
